@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide</title>
+
+<style>
+body{
+  font-family: David, Arial, sans-serif;
+  font-size:18px;
+  margin:10mm 15mm;
+  background:#fff;
+}
+
+#layout{
+  display:flex;
+  width:100%;
+  height:90vh;
+}
+
+/* ===== LEFT PANEL ===== */
+#listPanel{
+  width:240px;
+  min-width:180px;
+  padding:10px;
+  overflow-y:auto;
+  text-align:center; /* центрируем список */
+}
+
+#listPanel h3{
+  text-align:center;
+  margin:0 0 6px;
+}
+
+/* LIST ITEMS */
+#items{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.item{
+  cursor:pointer;
+  margin:2px 0;
+  width:100%;
+  text-align:center;
+}
+
+.item.active{
+  background:#ffe0e0;
+  border-radius:4px;
+  padding:2px;
+}
+
+.item:hover{
+  text-decoration:underline;
+}
+
+.item .he{
+  font-family:David;
+  font-weight:bold;
+  font-size:20px;
+  direction:rtl;
+}
+
+/* ===== RIGHT PANEL ===== */
+#mainPanel{
+  flex:1;
+  padding:10px;
+  margin-left:8mm;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== HEADER ===== */
+#aiNote{
+  text-align:center;
+  font-style:italic;
+  margin-bottom:6px;
+}
+
+/* controls centered */
+#topControls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+#topControls strong{
+  font-weight:bold;
+}
+
+#topControls select,
+#topControls button{
+  font-size:16px;
+  padding:4px 8px;
+}
+
+/* hide checkbox visually, keep logic */
+#showExamples{
+  display:none !important;
+}
+
+/* hide badge (visual only) */
+#baseBadge{
+  display:none !important;
+}
+
+/* ===== CONTENT ===== */
+#tableWrapper{
+  flex:1;
+  overflow-y:auto;
+  margin-top:10px;
+  text-align:center; /* центрируем примеры */
+}
+
+/* tighter examples spacing */
+#tableWrapper p,
+#tableWrapper div,
+#tableWrapper td{
+  line-height:1.25;
+  margin:2px 0;
+}
+
+.small{
+  text-align:center;
+  color:#222;
+  font-size:15px;
+}
+</style>
+
+</head>
+
+<body>
+<div id="layout">
+
+  <aside id="listPanel">
+    <h3>Список</h3>
+    <!-- FUNCTIONAL SEARCH (restored) -->
+    <input id="searchBox" type="search" placeholder="Поиск (he/ru/uk/en)…">
+    <div id="items"></div>
+  </aside>
+
+  <main id="mainPanel">
+
+    <div id="aiNote">
+      Формируется при помощи искусственного интеллекта ?
+    </div>
+
+    <!-- TOP CONTROLS (visual = Guide-face, ids = Guide) -->
+    <div id="topControls">
+      <span id="baseBadge" class="small">—</span>
+
+      <strong>Язык перевода:</strong>
+      <select id="langSelect">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+        <option value="uk">Українська</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="showExamples" checked>
+        Примеры
+      </label>
+
+      <button id="speakBase" title="Озвучка">🔊</button>
+
+      <!-- FUNCTIONAL SORT (restored, visually in header) -->
+      <select id="sortSelect">
+        <option value="tr">Сортировка</option>
+        <option value="he">По ивриту</option>
+        <option value="type">Слова / предлоги</option>
+      </select>
+    </div>
+
+    <div id="tableWrapper">
+      <div class="small">Выберите слово слева.</div>
+    </div>
+
+  </main>
+</div>
+
+<script src="data/list.js"></script>
+<script src="data/tables.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
